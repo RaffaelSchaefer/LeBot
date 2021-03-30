@@ -5,24 +5,24 @@ from replit import db
 
 client = discord.Client()
 
-default_fragen = ["Wie alt bist"]
+default_fragen = ["Wie alt bist ?"]
 
 if "responding" not in db.keys():
   db["responding"] = True
 
 def update_fragen(fragen_message):
-  if "fragen" in db.key():
+  if "fragen" in db.keys():
     fragen = db["fragen"]
     fragen.append(fragen_message)
     db["fragen"] = fragen
   else: 
-    db["fragen"] = (fragen_message)
+    db["fragen"] = [fragen_message]
 
 def delete_fragen(index):
   fragen = db["fragen"]
   if len(fragen) > index:
     del fragen[index]
-    db[fragen] = fragen
+    db["fragen"] = fragen
 
 @client.event
 async def on_ready():
@@ -35,15 +35,10 @@ async def on_message(message):
 
   msg = message.content
 
-  options = default_fragen
-  if "fragen" in db.keys():
-    options = options+db["fragen"]
-  
-  if msg.startswith("$Alive"):
-    await message.channel.send("Hello World !")
-  
-  if msg.startswith("$Frage"):
-    await message.channel.send(random.choice(options))
+  if db["responding"]:
+    options = default_fragen
+    if "fragen" in db.keys():
+      options = options + db["fragen"]
   
   if msg.startswith("$Neu"):
     fragen_message = msg.split("$Neu ",1)[1]
@@ -57,5 +52,8 @@ async def on_message(message):
       delete_fragen(index)
       fragen = db["fragen"]
     await message.channel.send(fragen)
+  
+  if msg.startswith("$Frage"):
+    await message.channel.send(random.choice(options))
 
 client.run(os.getenv('TOKEN'))
