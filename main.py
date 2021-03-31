@@ -33,7 +33,7 @@ async def on_message(message):
   dbFragen = "Fragen_"+str(message.guild.id)
   
   if msg.startswith("$newQ"):
-    fragen_message = msg.split("$NeuFrage ",1)[1]
+    fragen_message = msg.split("$newQ ",1)[1]
     update_fragen(fragen_message,dbFragen)
     print("Neue Frage hinzugefügt: "+ fragen_message)
     await message.channel.send("Neue Frage hinzugefügt: "+ fragen_message)
@@ -41,7 +41,7 @@ async def on_message(message):
   if msg.startswith("$delQ"):
     fragen = []
     if dbFragen in db.keys():
-      index = int(msg.split("$EntFrage",1)[1])
+      index = int(msg.split("$delQ",1)[1])
       delete_fragen(index,dbFragen)
       fragen = db[dbFragen]
     print('{0.author.name} loeschte eine Frage'.format(message))
