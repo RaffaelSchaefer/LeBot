@@ -2,6 +2,7 @@ import discord
 import os
 import random
 from replit import db
+from keep_alive import keep_alive
 
 client = discord.Client()
 
@@ -50,4 +51,5 @@ async def on_message(message):
   if msg.startswith("$Frage"):
     await message.channel.send(random.choice(db["fragen"]))
 
+keep_alive()
 client.run(os.getenv('TOKEN'))
