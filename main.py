@@ -31,13 +31,13 @@ async def on_message(message):
 
   msg = message.content
   
-  if msg.startswith("$Neu"):
+  if msg.startswith("$NeuFrage"):
     fragen_message = msg.split("$Neu ",1)[1]
     update_fragen(fragen_message)
     print("Neue Frage hinzugefügt: "+ fragen_message)
     await message.channel.send("Neue Frage hinzugefügt: "+ fragen_message)
   
-  if msg.startswith("$Ent"):
+  if msg.startswith("$EntFrage"):
     fragen = []
     if "fragen" in db.keys():
       index = int(msg.split("$Ent",1)[1])
@@ -53,6 +53,10 @@ async def on_message(message):
 
   if msg.startswith("$Frage"):
     print('{0.author.name} moechte eine Frage haben'.format(message))
+    await message.channel.send(random.choice(db["fragen"]))
+  
+  if msg.startswith("$TruthOrDrink"):
+    print('{0.author.name} moechte eine Runde Truth or Drink spieln'.format(message))
     await message.channel.send(random.choice(db["fragen"]))
 
 keep_alive()
