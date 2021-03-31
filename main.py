@@ -38,7 +38,7 @@ async def on_message(message):
   if db["responding"]:
     options = default_fragen
     if "fragen" in db.keys():
-      options = options + db["fragen"]
+      options = options.append(db["fragen"])
   
   if msg.startswith("$Neu"):
     fragen_message = msg.split("$Neu ",1)[1]
