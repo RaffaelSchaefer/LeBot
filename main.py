@@ -32,7 +32,7 @@ async def on_message(message):
   msg = message.content
   
   if msg.startswith("$NeuFrage"):
-    fragen_message = msg.split("$Neu ",1)[1]
+    fragen_message = msg.split("$NeuFrage ",1)[1]
     update_fragen(fragen_message)
     print("Neue Frage hinzugefügt: "+ fragen_message)
     await message.channel.send("Neue Frage hinzugefügt: "+ fragen_message)
@@ -40,15 +40,15 @@ async def on_message(message):
   if msg.startswith("$EntFrage"):
     fragen = []
     if "fragen" in db.keys():
-      index = int(msg.split("$Ent",1)[1])
+      index = int(msg.split("$EntFrage",1)[1])
       delete_fragen(index)
       fragen = db["fragen"]
-    print('{0.author.name} löschte eine Frage'.format(message))
+    print('{0.author.name} loeschte eine Frage'.format(message))
     await message.channel.send(fragen)
 
   if msg.startswith("$List"):
     fragen = db["fragen"]
-    print('{0.author.name} möchte alle Fragen wissen'.format(message))
+    print('{0.author.name} moechte alle Fragen wissen'.format(message))
     await message.channel.send(fragen)
 
   if msg.startswith("$Frage"):
