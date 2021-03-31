@@ -5,11 +5,6 @@ from replit import db
 
 client = discord.Client()
 
-default_fragen = ["Wie alt bist ?"]
-
-if "responding" not in db.keys():
-  db["responding"] = True
-
 def update_fragen(fragen_message):
   if "fragen" in db.keys():
     fragen = db["fragen"]
@@ -34,11 +29,6 @@ async def on_message(message):
     return
 
   msg = message.content
-
-  if db["responding"]:
-    options = default_fragen
-    if "fragen" in db.keys():
-      options = options.append(db["fragen"])
   
   if msg.startswith("$Neu"):
     fragen_message = msg.split("$Neu ",1)[1]
@@ -54,6 +44,6 @@ async def on_message(message):
     await message.channel.send(fragen)
   
   if msg.startswith("$Frage"):
-    await message.channel.send(random.choice(options))
+    await message.channel.send(random.choice(db["fragen"]))
 
 client.run(os.getenv('TOKEN'))
