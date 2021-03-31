@@ -32,13 +32,13 @@ async def on_message(message):
   msg = message.content
   dbFragen = "Fragen_"+str(message.guild.id)
   
-  if msg.startswith("$NeuFrage"):
+  if msg.startswith("$newQ"):
     fragen_message = msg.split("$NeuFrage ",1)[1]
     update_fragen(fragen_message,dbFragen)
     print("Neue Frage hinzugefügt: "+ fragen_message)
     await message.channel.send("Neue Frage hinzugefügt: "+ fragen_message)
   
-  if msg.startswith("$EntFrage"):
+  if msg.startswith("$delQ"):
     fragen = []
     if dbFragen in db.keys():
       index = int(msg.split("$EntFrage",1)[1])
@@ -47,12 +47,12 @@ async def on_message(message):
     print('{0.author.name} loeschte eine Frage'.format(message))
     await message.channel.send(fragen)
 
-  if msg.startswith("$List"):
+  if msg.startswith("$listQ"):
     fragen = db[dbFragen]
     print('{0.author.name} moechte alle Fragen wissen'.format(message))
     await message.channel.send(fragen)
 
-  if msg.startswith("$Frage"):
+  if msg.startswith("$question"):
     print('{0.author.name} moechte eine Frage haben'.format(message))
     await message.channel.send(random.choice(db[dbFragen]))
   

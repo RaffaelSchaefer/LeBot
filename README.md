@@ -9,8 +9,8 @@ LeBot is a small Discord game bot
 ## Bot commands
 |Command|Usage|
 |--|--|
-| $NeuFrage (question) | A new question is added to the question database  |
-| $EntFrage (index) | The question at the index is deleted from the database  |
-| $List | Lists all the questions in the database  |
-| $Frage | Selects a random question from the database  |
+| $newQ (question) | A new question is added to the question database  |
+| $delQ (index) | The question at the index is deleted from the database  |
+| $listQ | Lists all the questions in the database  |
+| $question | Selects a random question from the database  |
 | $TruthOrDrink | Outputs a truth or drink question  |
