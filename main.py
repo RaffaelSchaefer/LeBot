@@ -33,16 +33,20 @@ async def on_message(message):
   if msg.startswith("$Neu"):
     fragen_message = msg.split("$Neu ",1)[1]
     update_fragen(fragen_message)
-    await message.channel.send("Neue Frage hinzugefügt")
+    await message.channel.send("Neue Frage hinzugefügt: "+ fragen_message)
   
-  if msg.startswith("$Entfernen"):
+  if msg.startswith("$Ent"):
     fragen = []
     if "fragen" in db.keys():
-      index = int(msg.split("$Entfernen",1)[1])
+      index = int(msg.split("$Ent",1)[1])
       delete_fragen(index)
       fragen = db["fragen"]
     await message.channel.send(fragen)
-  
+
+  if msg.startswith("$List"):
+    fragen = db["fragen"]
+    await message.channel.send(fragen)
+
   if msg.startswith("$Frage"):
     await message.channel.send(random.choice(db["fragen"]))
 
