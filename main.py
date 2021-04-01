@@ -84,9 +84,16 @@ async def on_message(message):
     print('{0.author.name} moechte eine Frage haben'.format(message))
     await message.channel.send(random.choice(db[dbFragen]))
   
+  if msg.startswith("$dare"): 
+    print('{0.author.name} moechte eine Pflicht haben'.format(message))
+    await message.channel.send(random.choice(db[dbPflicht]))
+  
   if msg.startswith("$TruthOrDrink"):
     print('{0.author.name} moechte eine Runde Truth or Drink spieln'.format(message))
     await message.channel.send(random.choice(db[dbFragen]))
+  
+  if msg.startswith("$TruthOrDare"):
+    print('{0.author.name} moechte eine Runde Truth or Dare spieln'.format(message))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
