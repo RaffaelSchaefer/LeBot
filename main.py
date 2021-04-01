@@ -51,22 +51,18 @@ async def on_message(message):
     await message.channel.send("Neue Pflicht hinzugefügt: "+ pflicht_message)
   
   if msg.startswith("$delQ"):
-    fragen = []
     if dbFragen in db.keys():
       index = int(msg.split("$delQ",1)[1])
       delete_db(index,dbFragen)
-      fragen = db[dbFragen]
     print('{0.author.name} loeschte eine Frage'.format(message))
     for i in range(0, len(db[dbFragen])):
       await message.channel.send(create_list(dbFragen,i))
     print("Listen Ausgabe fertig")
 
   if msg.startswith("$delD"):
-    pflicht = []
     if dbPflicht in db.keys():
       index = int(msg.split("$delQ",1)[1])
       delete_db(index,dbPflicht)
-      pflicht = db[dbPflicht]
     print('{0.author.name} loeschte eine Frage'.format(message))
     for i in range(0, len(db[dbPflicht])):
       await message.channel.send(create_list(dbPflicht,i))
