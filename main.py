@@ -80,6 +80,16 @@ async def on_message(message):
       await message.channel.send(create_list(dbPflicht,i))
     print("Listen Ausgabe fertig")
 
+  if msg.startswith("$getQ"):
+    index = int(msg.split("getQ",1)[1])
+    print("Frage ")
+    await message.channel.send("Frage "+create_list(dbFragen,index))
+  
+  if msg.startswith("$getD"):
+    index = int(msg.split("getD",1)[1])
+    print("Pflicht ")
+    await message.channel.send("Pflicht "+create_list(dbPflicht,index))
+
   if msg.startswith("$question"):
     print('{0.author.name} moechte eine Frage haben'.format(message))
     await message.channel.send(random.choice(db[dbFragen]))
@@ -94,6 +104,7 @@ async def on_message(message):
   
   if msg.startswith("$TruthOrDare"):
     print('{0.author.name} moechte eine Runde Truth or Dare spieln'.format(message))
+    await message.channel.send("Start a new round Truth or Dare")
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
