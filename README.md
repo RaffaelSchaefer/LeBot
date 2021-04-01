@@ -1,5 +1,5 @@
 # LeBot
-![LeBot Logo](https://github.com/RaffaelSchaefer/LeBot/blob/master/Icons/Chat.png?raw=true)
+![LeBot Logo](https://github.com/RaffaelSchaefer/LeBot/blob/master/Icons/Chat_small.png?raw=true)
 
 LeBot is a small Discord game bot
 
