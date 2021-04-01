@@ -105,6 +105,10 @@ async def on_message(message):
   if msg.startswith("$TruthOrDare"):
     print('{0.author.name} moechte eine Runde Truth or Dare spieln'.format(message))
     await message.channel.send("Start a new round Truth or Dare")
+  
+  if msg.startswith("$help"):
+    print("All commands:\n$newQ/D -> A new question/dare is added to the question/dare database\n$delQ/D -> The question/dare at the index is deleted from the database\n$listQ/D -> Lists all the question/dare in the database\n$getQ/D -> Shows the question/dare a the index point\n$question -> Selects a random question from the database\n$dare -> Selects a random dare from the database\n$TruthOrDrink -> Outputs a truth or drink question\n$TruthOrDare -> Starts a new round of Truth or Dare (incomplete)")
+    await message.channel.send("All commands:\n$newQ/D -> A new question/dare is added to the question/dare database\n$delQ/D -> The question/dare at the index is deleted from the database\n$listQ/D -> Lists all the question/dare in the database\n$getQ/D -> Shows the question/dare a the index point\n$question -> Selects a random question from the database\n$dare -> Selects a random dare from the database\n$TruthOrDrink -> Outputs a truth or drink question\n$TruthOrDare -> Starts a new round of Truth or Dare (incomplete)")
 
 keep_alive()
 client.run(os.getenv('TOKEN'))

@@ -19,6 +19,7 @@ LeBot is a small Discord game bot
 
 |Command|Usage|
 |--|--|
+| $help | Shows all commands |
 | $newQ (question) | A new question is added to the question database |
 | $delQ (index) | The question at the index is deleted from the database |
 | $listQ | Lists all the questions in the database |
