@@ -4,7 +4,7 @@ LeBot is a small Discord game bot
 ### Games included
 - Truth or Drink
 ### Games planed
-- Truth or Dare
+- Truth or Dare (WIP)
 - Who is most likely
 ## Bot commands
 |Command|Usage|
