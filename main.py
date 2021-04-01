@@ -22,6 +22,7 @@ def delete_fragen(index,dbKey):
 
 def create_list(dbKey,index):
   out = str(index)+": "+str(db[dbKey][index])+"\n"
+  print(out)
   return out
 
 @client.event
@@ -51,11 +52,13 @@ async def on_message(message):
     print('{0.author.name} loeschte eine Frage'.format(message))
     for i in range(0, len(db[dbFragen])):
       await message.channel.send(create_list(dbFragen,i))
+    print("Listen Ausgabe fertig")
 
   if msg.startswith("$listQ"):
     print('{0.author.name} moechte alle Fragen wissen'.format(message))
     for i in range(0, len(db[dbFragen])):
       await message.channel.send(create_list(dbFragen,i))
+    print("Listen Ausgabe fertig")
 
   if msg.startswith("$question"):
     print('{0.author.name} moechte eine Frage haben'.format(message))
