@@ -30,5 +30,6 @@ LeBot is a small Discord game bot
 | $getD (index) | Shows the Dare a the index point |
 | $question | Selects a random question from the database |
 | $dare | Selects a random dare from the database |
+| $info | Shows all the stats |
 | $TruthOrDrink | Outputs a truth or drink question |
 | $TruthOrDare | Starts a new round of Truth or Dare (incomplete) |
