@@ -168,6 +168,13 @@ async def get(ctx,mode: str, index: int):
     else:
       await ctx.send(content="Entry does not exist")
 
+@slash.slash(name="info", description="Shows the Stats of the bot on your server")
+async def info(ctx):
+  dbFragen = "Fragen_"+str(ctx.guild.id)
+  dbPflicht = "Pflicht_"+str(ctx.guild.id)
+  dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))++"\nMost likely is to Questions: "+str(len(db[dbMostlikely])))
+
 #Commands Gamemodes
 @slash.slash(name="TruthOrDrink", description="Starts a new round of Truth or Drink")
 async def TruthOrDrink(ctx):
