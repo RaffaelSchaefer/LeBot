@@ -1,6 +1,7 @@
 import discord
 import os
 import random
+import asyncio
 from replit import db
 from keep_alive import keep_alive
 from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
@@ -109,9 +110,32 @@ option_del = [
   )
 ]
 
+option_List = [
+  create_option(
+    name="mode",
+    description="choose a mode",
+    option_type=3,
+    required=True,
+    choices=[
+      create_choice(
+      name="Question",
+      value="question"
+    ),
+      create_choice(
+      name="Dare",
+      value="dare"
+    ),
+      create_choice(
+      name="Mostlikely",
+      value="mostlikely"
+    )
+    ]
+  )
+]
+
 ##Commands Database
 
-@slash.slash(name="new", description="adds a new entry to a specific database",options=option_New)
+@slash.slash(name="new", description="Adds a new entry to a specific database",options=option_New)
 async def new(ctx, mode: str, input: str):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
@@ -129,7 +153,7 @@ async def new(ctx, mode: str, input: str):
       print("New Most likely is to Question added: "+input)
       await ctx.send(content="New Most likely is to Question added: "+input)
 
-@slash.slash(name="delete", description="adds a new entry to a specific database",options=option_del)
+@slash.slash(name="delete", description="Adds a new entry to a specific database",options=option_del)
 async def delete(ctx,mode: str, index: int):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
@@ -147,7 +171,7 @@ async def delete(ctx,mode: str, index: int):
       delete_dbEntry(index,dbMostlikely)
       print('{0.author.name} delete a Most likely is to Question'.format(ctx))
 
-@slash.slash(name="get", description="get a specific entry",options=option_del)
+@slash.slash(name="get", description="Get a specific entry",options=option_del)
 async def get(ctx,mode: str, index: int):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
@@ -174,6 +198,24 @@ async def info(ctx):
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))+"\nAmount of Most likely is to Questions: "+str(len(db[dbMostlikely])))
+
+@slash.slash(name="list", description="Lists all entrys",options=option_List)
+async def list(ctx,mode: str):
+  dbFragen = "Fragen_"+str(ctx.guild.id)
+  dbPflicht = "Pflicht_"+str(ctx.guild.id)
+  dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  if mode == "question":
+    for i in range(0,len(db[dbFragen])):
+      await asyncio.sleep(2)
+      await ctx.send(content=get_dbEntry(dbFragen,i))
+  if mode == "dare":
+    for i in range(0,len(db[dbPflicht])):
+      await asyncio.sleep(2)
+      await ctx.send(content=get_dbEntry(dbPflicht,i))
+  if mode == "mostlikely":
+    for i in range(0,len(db[dbMostlikely])):
+      await asyncio.sleep(2)
+      await ctx.send(content=get_dbEntry(dbMostlikely,i))
 
 #Commands Gamemodes
 
