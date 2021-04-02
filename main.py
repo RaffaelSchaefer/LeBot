@@ -222,8 +222,8 @@ async def list(ctx,mode: str):
 
 #Commands Gamemodes
 
-@slash.slash(name="truthordare", description="Starts a new round of Truth or Dare",options=option_TruthOrDare)
-async def truthordare(ctx,mode: str):
+@slash.slash(name="TruthOrDare", description="Starts a new round of Truth or Dare",options=option_TruthOrDare)
+async def TruthOrDare(ctx,mode: str):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Dare'.format(ctx))
@@ -234,8 +234,8 @@ async def truthordare(ctx,mode: str):
     print('{0.author.name} choose dare'.format(ctx))
     await ctx.send(content="Dare: "+random.choice(db[dbPflicht]))
 
-@slash.slash(name="mostlikelyto", description="Starts a new round of Most likely to")
-async def mostlikelyto(ctx):
+@slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to",options = [])
+async def MostLikelyTo(ctx):
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
   await ctx.send(content=random.choice(db[dbMostlikely]))

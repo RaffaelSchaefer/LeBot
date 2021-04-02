@@ -22,5 +22,5 @@ It uses the new slash command system
 | /delete (mode) (index) | Deletes a entry from a specific database |
 | /get (mode) (index) | Shows a entry from a specific database |
 | /info | Shows all Bot |
-| /truthordare (mode) | Starts a new round of Truth or Dare |
-| /mostlikelyto | Starts a new round of Most likely to |
+| /TruthOrDare (mode) | Starts a new round of Truth or Dare |
+| /MostLikelyTo | Starts a new round of Most likely to |
