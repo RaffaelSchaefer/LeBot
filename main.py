@@ -76,6 +76,10 @@ option_New = [
       create_choice(
       name="Mostlikely",
       value="mostlikely"
+    ),
+      create_choice(
+      name="Topics",
+      value="topics"
     )
     ]
   ),
@@ -102,6 +106,10 @@ option_del = [
       create_choice(
       name="Mostlikely",
       value="mostlikely"
+    ),
+      create_choice(
+      name="Topics",
+      value="topics"
     )
     ]
   ),
@@ -128,6 +136,10 @@ option_List = [
       create_choice(
       name="Mostlikely",
       value="mostlikely"
+    ),
+      create_choice(
+      name="Topics",
+      value="topics"
     )
     ]
   )
@@ -140,6 +152,7 @@ async def new(ctx, mode: str, input: str):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  dbTopics = "Topics_"+str(ctx.guild.id)
   if mode == "question":
       update_dbEntry(input,dbFragen)
       print("New Question added: "+input)
@@ -152,30 +165,44 @@ async def new(ctx, mode: str, input: str):
       update_dbEntry(input,dbMostlikely)
       print("New Most likely is to Question added: "+input)
       await ctx.send(content="New Most likely is to Question added: "+input)
+  if mode == "topics":
+      update_dbEntry(input,dbTopics)
+      print("New Topic added: "+input)
+      await ctx.send(content="New Topic added: "+input)
 
 @slash.slash(name="delete", description="Adds a new entry to a specific database",options=option_del)
 async def delete(ctx,mode: str, index: int):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  dbTopics = "Topics_"+str(ctx.guild.id)
   if mode == "question":
     if dbFragen in db.keys():
       delete_dbEntry(index,dbFragen)
-      print('{0.author.name} delete a Question'.format(ctx))
+      print('{0.author.name} deleted a Question'.format(ctx))
+      await ctx.send(content='{0.author.name} deleted a Question'.format(ctx))
   if mode == "dare":
     if dbPflicht in db.keys():
       delete_dbEntry(index,dbPflicht)
-      print('{0.author.name} delete a Dare'.format(ctx))
+      print('{0.author.name} deleted a Dare'.format(ctx))
+      await ctx.send(content='{0.author.name} deleted a Dare'.format(ctx))
   if mode == "mostlikely":
     if dbMostlikely in db.keys():
       delete_dbEntry(index,dbMostlikely)
-      print('{0.author.name} delete a Most likely is to Question'.format(ctx))
+      print('{0.author.name} deleted a Most likely is to Question'.format(ctx))
+      await ctx.send(content='{0.author.name} deleted a Most likely is to Question'.format(ctx))
+  if mode == "topics":
+    if dbTopics in db.keys():
+      delete_dbEntry(index,dbTopics)
+      print('{0.author.name} deleted a Topic'.format(ctx))
+      await ctx.send(content='{0.author.name} deleted a deleted a Topic'.format(ctx))
 
 @slash.slash(name="get", description="Get a specific entry",options=option_del)
 async def get(ctx,mode: str, index: int):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  dbTopics = "Topics_"+str(ctx.guild.id)
   if mode == "question":
     if index <= len(db[dbFragen]):
       await ctx.send(content=get_dbEntry(dbFragen,index))
@@ -191,19 +218,26 @@ async def get(ctx,mode: str, index: int):
       await ctx.send(content=get_dbEntry(dbMostlikely,index))
     else:
       await ctx.send(content="Entry does not exist")
+  if mode == "topics":
+    if index <= len(db[dbTopics]):
+      await ctx.send(content=get_dbEntry(dbTopics,index))
+    else:
+      await ctx.send(content="Entry does not exist")
 
 @slash.slash(name="info", description="Shows the Stats of the bot on your server")
 async def info(ctx):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
-  await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))+"\nAmount of Most likely is to Questions: "+str(len(db[dbMostlikely])))
+  dbTopics = "Topics_"+str(ctx.guild.id)
+  await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))+"\nAmount of Most likely is to Questions: "+str(len(db[dbMostlikely]))+"\nAmount of Topics: "+str(len(db[dbTopics])))
 
 @slash.slash(name="list", description="Lists all entrys",options=option_List)
 async def list(ctx,mode: str):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  dbTopics = "Topics_"+str(ctx.guild.id)
   if mode == "question":
     for i in range(0,len(db[dbFragen])):
       await asyncio.sleep(2)
@@ -216,6 +250,10 @@ async def list(ctx,mode: str):
     for i in range(0,len(db[dbMostlikely])):
       await asyncio.sleep(2)
       await ctx.send(content=get_dbEntry(dbMostlikely,i))
+  if mode == "topics":
+    for i in range(0,len(db[dbTopics])):
+      await asyncio.sleep(2)
+      await ctx.send(content=get_dbEntry(dbTopics,i))
 
 #Commands Gamemodes
 
@@ -231,11 +269,17 @@ async def TruthOrDare(ctx,mode: str):
     print('{0.author.name} choose dare'.format(ctx))
     await ctx.send(content="Dare: "+random.choice(db[dbPflicht]))
 
-@slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to")
+@slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to",options = [])
 async def MostLikelyTo(ctx):
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
   await ctx.send(content=random.choice(db[dbMostlikely]))
+
+@slash.slash(name="Topic", description="Starts a new round of Most likely to",options = [])
+async def Topic(ctx):
+  dbTopics = "Topics_"+str(ctx.guild.id)
+  print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
+  await ctx.send(content=random.choice(db[dbTopics]))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))

@@ -24,3 +24,4 @@ It uses the new slash command system
 | /info | Shows all Bot |
 | /TruthOrDare (mode) | Starts a new round of Truth or Dare |
 | /MostLikelyTo | Starts a new round of Most likely to |
+| /Topic | Shows a new topic |
