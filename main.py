@@ -176,11 +176,6 @@ async def info(ctx):
   await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))+"\nAmount of Most likely is to Questions: "+str(len(db[dbMostlikely])))
 
 #Commands Gamemodes
-@slash.slash(name="TruthOrDrink", description="Starts a new round of Truth or Drink")
-async def TruthOrDrink(ctx):
-  dbFragen = "Fragen_"+str(ctx.guild.id)
-  print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
-  await ctx.send(content=random.choice(db[dbFragen]))
 
 @slash.slash(name="TruthOrDare", description="Starts a new round of Truth or Dare",options=option_TruthOrDare)
 async def TruthOrDare(ctx,mode: str):
@@ -196,9 +191,9 @@ async def TruthOrDare(ctx,mode: str):
 
 @slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to")
 async def MostLikelyTo(ctx):
-  dbFragen = "Fragen_"+str(ctx.guild.id)
+  dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
-  await ctx.send(content=random.choice(db[dbFragen]))
+  await ctx.send(content=random.choice(db[dbMostlikely]))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
