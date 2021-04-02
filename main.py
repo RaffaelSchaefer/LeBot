@@ -162,14 +162,17 @@ async def delete(ctx,mode: str, index: int):
     if dbFragen in db.keys():
       delete_dbEntry(index,dbFragen)
       print('{0.author.name} delete a Question'.format(ctx))
+      await ctx.send(content='{0.author.name} delete a Question'.format(ctx))
   if mode == "dare":
     if dbPflicht in db.keys():
       delete_dbEntry(index,dbPflicht)
       print('{0.author.name} delete a Dare'.format(ctx))
+      await ctx.send(content='{0.author.name} delete a Dare'.format(ctx))
   if mode == "mostlikely":
     if dbMostlikely in db.keys():
       delete_dbEntry(index,dbMostlikely)
       print('{0.author.name} delete a Most likely is to Question'.format(ctx))
+      await ctx.send(content='{0.author.name} delete a Most likely is to Question'.format(ctx))
 
 @slash.slash(name="get", description="Get a specific entry",options=option_del)
 async def get(ctx,mode: str, index: int):
@@ -219,8 +222,8 @@ async def list(ctx,mode: str):
 
 #Commands Gamemodes
 
-@slash.slash(name="TruthOrDare", description="Starts a new round of Truth or Dare",options=option_TruthOrDare)
-async def TruthOrDare(ctx,mode: str):
+@slash.slash(name="truthordare", description="Starts a new round of Truth or Dare",options=option_TruthOrDare)
+async def truthordare(ctx,mode: str):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Dare'.format(ctx))
@@ -231,8 +234,8 @@ async def TruthOrDare(ctx,mode: str):
     print('{0.author.name} choose dare'.format(ctx))
     await ctx.send(content="Dare: "+random.choice(db[dbPflicht]))
 
-@slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to")
-async def MostLikelyTo(ctx):
+@slash.slash(name="mostlikelyto", description="Starts a new round of Most likely to")
+async def mostlikelyto(ctx):
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
   await ctx.send(content=random.choice(db[dbMostlikely]))
