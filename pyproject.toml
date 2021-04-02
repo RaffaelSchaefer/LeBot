@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "lebot"
-version = "1.2.0"
-description = "A basic mini game bot for discord for my best friend"
+version = "2.0.0"
+description = "A basic mini game bot for discord"
 authors = ["Raffael E. Schaefer"]
 
 [tool.poetry.dependencies]

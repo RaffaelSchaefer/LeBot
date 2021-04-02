@@ -19,5 +19,6 @@ It uses the new slash command system
 
 |Command|Usage|
 |--|--|
+| /new (mode) (input) | Adds a new entry to a specific database |
 | /TruthOrDrink | Outputs a truth or drink question |
-| /TruthOrDare | Starts a new round of Truth or Dare (incomplete) |
+| /TruthOrDare (mode) | Starts a new round of Truth or Dare |
