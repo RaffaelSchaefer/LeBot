@@ -194,5 +194,11 @@ async def TruthOrDare(ctx,mode: str):
     print('{0.author.name} choose dare'.format(ctx))
     await ctx.send(content="Dare: "+random.choice(db[dbPflicht]))
 
+@slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to")
+async def MostLikelyTo(ctx):
+  dbFragen = "Fragen_"+str(ctx.guild.id)
+  print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
+  await ctx.send(content=random.choice(db[dbFragen]))
+
 keep_alive()
 client.run(os.getenv('TOKEN'))
