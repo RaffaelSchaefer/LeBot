@@ -154,24 +154,18 @@ async def get(ctx,mode: str, index: int):
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
   if mode == "question":
     if index <= len(db[dbFragen]):
-      print(str(index)+": "+get_dbEntry(dbFragen,index))
-      await ctx.send(content=str(index)+": "+get_dbEntry(dbFragen,index))
+      await ctx.send(content=get_dbEntry(dbFragen,index))
     else:
-      print("Entry does not exist")
       await ctx.send(content="Entry does not exist")
   if mode == "dare":
     if index <= len(db[dbPflicht]):
-      print(str(index)+": "+get_dbEntry(dbPflicht,index))
-      await ctx.send(content=str(index)+": "+get_dbEntry(dbPflicht,index))
+      await ctx.send(content=get_dbEntry(dbPflicht,index))
     else:
-      print("Entry does not exist")
       await ctx.send(content="Entry does not exist")
   if mode == "mostlikely":
     if index <= len(db[dbMostlikely]):
-      print(str(index)+": "+get_dbEntry(dbMostlikely,index))
-      await ctx.send(content=str(index)+": "+get_dbEntry(dbMostlikely,index))
+      await ctx.send(content=get_dbEntry(dbMostlikely,index))
     else:
-      print("Entry does not exist")
       await ctx.send(content="Entry does not exist")
 
 #Commands Gamemodes
