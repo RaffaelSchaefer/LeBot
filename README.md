@@ -20,5 +20,7 @@ It uses the new slash command system
 |Command|Usage|
 |--|--|
 | /new (mode) (input) | Adds a new entry to a specific database |
+| /delete (mode) (index) | Deletes a entry from a specific database |
+| /get (mode) (index) | Shows a entry from a specific database |
 | /TruthOrDrink | Outputs a truth or drink question |
 | /TruthOrDare (mode) | Starts a new round of Truth or Dare |

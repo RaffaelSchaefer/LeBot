@@ -83,6 +83,32 @@ option_New = [
   )
 ]
 
+option_del = [
+  create_option(
+    name="mode",
+    description="choose a mode",
+    option_type=3,
+    required=True,
+    choices=[
+      create_choice(
+      name="Question",
+      value="question"
+    ),
+      create_choice(
+      name="Dare",
+      value="dare"
+    ),
+      create_choice(
+      name="Mostlikely",
+      value="mostlikely"
+    )
+    ]
+  ),
+  create_option(
+    name="index", description="The index of the entry",option_type=4,required=True
+  )
+]
+
 ##Commands Database
 
 @slash.slash(name="new", description="adds a new entry to a specific database",options=option_New)
@@ -101,7 +127,52 @@ async def new(ctx, mode: str, input: str):
   if mode == "mostlikely":
       update_dbEntry(input,dbMostlikely)
       print("New Most likely is to Question added: "+input)
-      await ctx.send(content="New Most likely is to added: "+input)
+      await ctx.send(content="New Most likely is to Question added: "+input)
+
+@slash.slash(name="delete", description="adds a new entry to a specific database",options=option_del)
+async def delete(ctx,mode: str, index: int):
+  dbFragen = "Fragen_"+str(ctx.guild.id)
+  dbPflicht = "Pflicht_"+str(ctx.guild.id)
+  dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  if mode == "question":
+    if dbFragen in db.keys():
+      delete_dbEntry(index,dbFragen)
+      print('{0.author.name} delete a Question'.format(ctx))
+  if mode == "dare":
+    if dbPflicht in db.keys():
+      delete_dbEntry(index,dbPflicht)
+      print('{0.author.name} delete a Dare'.format(ctx))
+  if mode == "mostlikely":
+    if dbMostlikely in db.keys():
+      delete_dbEntry(index,dbMostlikely)
+      print('{0.author.name} delete a Most likely is to Question'.format(ctx))
+
+@slash.slash(name="get", description="get a specific entry",options=option_del)
+async def get(ctx,mode: str, index: int):
+  dbFragen = "Fragen_"+str(ctx.guild.id)
+  dbPflicht = "Pflicht_"+str(ctx.guild.id)
+  dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
+  if mode == "question":
+    if index <= len(db[dbFragen]):
+      print(str(index)+": "+get_dbEntry(dbFragen,index))
+      await ctx.send(content=str(index)+": "+get_dbEntry(dbFragen,index))
+    else:
+      print("Entry does not exist")
+      await ctx.send(content="Entry does not exist")
+  if mode == "dare":
+    if index <= len(db[dbPflicht]):
+      print(str(index)+": "+get_dbEntry(dbPflicht,index))
+      await ctx.send(content=str(index)+": "+get_dbEntry(dbPflicht,index))
+    else:
+      print("Entry does not exist")
+      await ctx.send(content="Entry does not exist")
+  if mode == "mostlikely":
+    if index <= len(db[dbMostlikely]):
+      print(str(index)+": "+get_dbEntry(dbMostlikely,index))
+      await ctx.send(content=str(index)+": "+get_dbEntry(dbMostlikely,index))
+    else:
+      print("Entry does not exist")
+      await ctx.send(content="Entry does not exist")
 
 #Commands Gamemodes
 @slash.slash(name="TruthOrDrink", description="Starts a new round of Truth or Drink")
