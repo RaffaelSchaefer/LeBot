@@ -13,7 +13,7 @@ It uses the new slash command system
 
 ### Games planed
 
-- Who is most likely
+- Who is most likely (WIP)
 
 ## Bot commands
 

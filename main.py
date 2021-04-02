@@ -173,7 +173,7 @@ async def info(ctx):
   dbFragen = "Fragen_"+str(ctx.guild.id)
   dbPflicht = "Pflicht_"+str(ctx.guild.id)
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
-  await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))++"\nMost likely is to Questions: "+str(len(db[dbMostlikely])))
+  await ctx.send(content="Amount of Questions: "+str(len(db[dbFragen]))+"\nAmount of Dares: "+str(len(db[dbPflicht]))+"\nAmount of Most likely is to Questions: "+str(len(db[dbMostlikely])))
 
 #Commands Gamemodes
 @slash.slash(name="TruthOrDrink", description="Starts a new round of Truth or Drink")
