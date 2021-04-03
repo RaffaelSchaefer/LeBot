@@ -286,7 +286,7 @@ async def Topic(ctx):
 @slash.slash(name="eb", description="Asks the magic Eight ball",options = [])
 async def eb(ctx):
   print('{0.author.name} asked the magic eight ball'.format(ctx))
-  await ctx.send(random.choice(eightball))
+  await ctx.send("Magic eight ball: "+random.choice(eightball))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
