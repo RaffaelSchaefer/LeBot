@@ -25,3 +25,4 @@ It uses the new slash command system
 | /TruthOrDare (mode) | Starts a new round of Truth or Dare |
 | /MostLikelyTo | Starts a new round of Most likely to |
 | /Topic | Shows a new topic |
+| /eb | Asks the magic Eight ball |

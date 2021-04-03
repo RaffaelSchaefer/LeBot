@@ -68,6 +68,14 @@ version = "1.0.1"
 
 [[package]]
 category = "main"
+description = "A simple discord slash command handler for discord.py."
+name = "discord-py-slash-command"
+optional = false
+python-versions = ">=3.6"
+version = "1.1.0"
+
+[[package]]
+category = "main"
 description = "A Python wrapper for the Discord API"
 name = "discord.py"
 optional = false
@@ -193,7 +201,7 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [metadata]
-content-hash = "776fd9c4b64d05d562615bb0778dc1dcd911cca4f68eec8f592bba66b2a2a6ba"
+content-hash = "93e6eb48f5ed8f6fc5686f242e0062f7e8ade7451da07ecc430a919188dde10e"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -255,6 +263,10 @@ click = [
 discord = [
     {file = "discord-1.0.1-py3-none-any.whl", hash = "sha256:9d4debb4a37845543bd4b92cb195bc53a302797333e768e70344222857ff1559"},
     {file = "discord-1.0.1.tar.gz", hash = "sha256:ff6653655e342e7721dfb3f10421345fd852c2a33f2cca912b1c39b3778a9429"},
+]
+discord-py-slash-command = [
+    {file = "discord-py-slash-command-1.1.0.tar.gz", hash = "sha256:b40a3c10ff4a83cb17b1443bd90761870d24cb71e7501f11c786ed179bef8d18"},
+    {file = "discord_py_slash_command-1.1.0-py3-none-any.whl", hash = "sha256:3dae6ff3e72da132b8307214daf575b68972407ca91572cca88276f25264554c"},
 ]
 "discord.py" = [
     {file = "discord.py-1.6.0-py3-none-any.whl", hash = "sha256:3df148daf6fbcc7ab5b11042368a3cd5f7b730b62f09fb5d3cbceff59bcfbb12"},
