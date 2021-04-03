@@ -10,6 +10,8 @@ from discord_slash.utils.manage_commands import create_option, create_choice
 client = discord.Client()
 slash = SlashCommand(client, sync_commands=True)
 
+eightball = {"It is certain","It is decidedly so","Without a doubt","Yes – definitely","You may rely on it","As I see it, yes","Most likely","Outlook good","Yes","Signs point to yes","Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don’t count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"}
+
 ##Functions
 
 def update_dbEntry(fragen_message,dbKey):
@@ -272,14 +274,19 @@ async def TruthOrDare(ctx,mode: str):
 @slash.slash(name="MostLikelyTo", description="Starts a new round of Most likely to",options = [])
 async def MostLikelyTo(ctx):
   dbMostlikely = "Mostlikely_"+str(ctx.guild.id)
-  print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
+  print('{0.author.name} wants to play a who is the most likely to'.format(ctx))
   await ctx.send(content=random.choice(db[dbMostlikely]))
 
 @slash.slash(name="Topic", description="Starts a new round of Most likely to",options = [])
 async def Topic(ctx):
   dbTopics = "Topics_"+str(ctx.guild.id)
-  print('{0.author.name} wants to play a round Truth or Drink'.format(ctx))
+  print('{0.author.name} wants to have a topic'.format(ctx))
   await ctx.send(content=random.choice(db[dbTopics]))
+
+@slash.slash(name="eb", description="Asks the magic Eight ball",options = [])
+async def eb(ctx):
+  print('{0.author.name} asked the magic eight ball'.format(ctx))
+  await ctx.send(content=random.choice(eightball))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
