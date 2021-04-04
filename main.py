@@ -60,6 +60,12 @@ option_TruthOrDare = [
   )
 ]
 
+option_eb = [
+  create_option(
+    name="question", description="The Question for the magic eight ball",option_type=3,required=True
+  )
+]
+
 option_New = [
   create_option(
     name="mode",
@@ -283,10 +289,10 @@ async def Topic(ctx):
   print('{0.author.name} wants to have a topic'.format(ctx))
   await ctx.send(content=random.choice(db[dbTopics]))
 
-@slash.slash(name="eb", description="Asks the magic Eight ball",options = [])
-async def eb(ctx):
+@slash.slash(name="eb", description="Asks the magic Eight ball",options = option_eb)
+async def eb(ctx, question: str):
   print('{0.author.name} asked the magic eight ball'.format(ctx))
-  await ctx.send("Magic eight ball: "+random.choice(eightball))
+  await ctx.send("The Question for the magic eight ball was: "+question+"\nHis Answere is: "+random.choice(eightball))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
