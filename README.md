@@ -9,10 +9,8 @@ It uses the new slash command system
 ### Games included
 
 - Truth or Dare
-
-### Games planed
-
 - Who is most likely (WIP)
+- Magic eight ball
 
 ## Bot commands
 
@@ -26,3 +24,5 @@ It uses the new slash command system
 | /MostLikelyTo | Starts a new round of Most likely to |
 | /Topic | Shows a new topic |
 | /eb | Asks the magic Eight ball |
+| /migrate | Migrate a db |
+| /reset | Reset all dbs on a server |
