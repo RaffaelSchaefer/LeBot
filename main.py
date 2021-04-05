@@ -4,7 +4,7 @@ import random
 import asyncio
 from replit import db
 from keep_alive import keep_alive
-from dbcommands import update_dbEntry,delete_dbEntry,get_dbEntry
+from dbcommands import update_dbEntry,delete_dbEntry,get_dbEntry,tranfer_db,reset_db
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option, create_choice
 
@@ -133,6 +133,20 @@ option_List = [
   )
 ]
 
+option_migrate = [
+  create_option(
+    name="serverid", description="Server ID",option_type=3,required=True
+  ),create_option(
+    name="masterpassword", description="Master Password",option_type=3,required=True
+  )
+]
+
+option_reset = [
+  create_option(
+    name="masterpassword", description="Master Password",option_type=3,required=True
+  )
+]
+
 ##Commands Database
 
 @slash.slash(name="new", description="Adds a new entry to a specific database",options=option_New)
@@ -242,6 +256,18 @@ async def list(ctx,mode: str):
     for i in range(0,len(db[dbTopics])):
       await asyncio.sleep(2)
       await ctx.send(content=get_dbEntry(dbTopics,i))
+
+@slash.slash(name="migrate", description="Migrate a db",options=option_migrate)
+async def migrate(ctx, serverid: str, masterpassword: str):
+  print('{0.author.name} wants to migrate a db'.format(ctx))
+  tranfer_db(str(ctx.guild.id), serverid, masterpassword)
+  await ctx.send(content="Transfer complete")
+
+@slash.slash(name="reset", description="Resets all dbs",options=option_reset)
+async def reset(ctx, masterpassword: str):
+  print('{0.author.name} wants to reset the db'.format(ctx))
+  reset_db(str(ctx.guild.id), masterpassword)
+  await ctx.send(content="Reset complete")
 
 #Commands Gamemodes
 
