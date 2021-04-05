@@ -5,7 +5,7 @@ import asyncio
 from replit import db
 from keep_alive import keep_alive
 from dbcommands import update_dbEntry,delete_dbEntry,get_dbEntry
-from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
+from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option, create_choice
 
 client = discord.Client()
