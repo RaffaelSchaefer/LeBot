@@ -4,6 +4,7 @@ import random
 import asyncio
 from replit import db
 from keep_alive import keep_alive
+from dbcommands import update_dbEntry,delete_dbEntry,get_dbEntry
 from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
 from discord_slash.utils.manage_commands import create_option, create_choice
 
@@ -11,27 +12,6 @@ client = discord.Client()
 slash = SlashCommand(client, sync_commands=True)
 
 eightball = ["It is certain","It is decidedly so","Without a doubt","Yes – definitely","You may rely on it","As I see it, yes","Most likely","Outlook good","Yes","Signs point to yes","Don’t count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
-
-##Functions
-
-def update_dbEntry(fragen_message,dbKey):
-  if dbKey in db.keys():
-    fragen = db[dbKey]
-    fragen.append(fragen_message)
-    db[dbKey] = fragen
-  else: 
-    db[dbKey] = [fragen_message]
-
-def delete_dbEntry(index,dbKey):
-  fragen = db[dbKey]
-  if len(fragen) > index:
-    del fragen[index]
-    db[dbKey] = fragen
-
-def get_dbEntry(dbKey,index):
-  out = str(index)+": "+str(db[dbKey][index])+"\n"
-  print(out)
-  return out
 
 ##Startup
 
