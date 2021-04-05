@@ -2,7 +2,7 @@ import os
 from replit import db
 
 def create_pw(serverid,password):
-  if not db["PW_"+serverid]:
+  if db["PW_"+serverid] == "":
     db["PW_"+serverid] = password
   else:
     print("Password allready made please use change_pw instead")
