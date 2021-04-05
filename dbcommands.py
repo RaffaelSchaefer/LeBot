@@ -30,20 +30,37 @@ def tranfer_db(currentServerID,targetServerID):
   targetDbPflicht = "Pflicht_"+str(targetServerID)
   targetDbMostlikely = "Mostlikely_"+str(targetServerID)
   targetDbTopics = "Topics_"+str(targetServerID)
-  #Logic
+  #Fragen
   if currentDbFragen in db.keys():
-    db[currentDbFragen] = db[currentDbFragen]+db[targetDbFragen]
+    for i in range(0,len(db[targetDbFragen])):
+      db[currentDbFragen].append(db[targetDbFragen][i])
   else: 
     db[currentDbFragen] = db[targetDbFragen]
+  #Pflicht
   if currentDbPflicht in db.keys():
-    db[currentDbPflicht] = db[currentDbPflicht]+db[targetDbPflicht]
+    for i in range(0,len(db[targetDbPflicht])):
+      db[currentDbPflicht].append(db[targetDbPflicht][i])
   else: 
     db[currentDbPflicht] = db[targetDbPflicht]
+  #Mlt
   if currentDbMostlikely in db.keys():
-    db[currentDbMostlikely] = db[currentDbMostlikely]+db[targetDbMostlikely]
+    for i in range(0,len(db[targetDbMostlikely])):
+      db[currentDbMostlikely].append(db[targetDbMostlikely][i])
   else: 
     db[currentDbMostlikely] = db[targetDbMostlikely]
+  #Topics
   if currentDbTopics in db.keys():
-    db[currentDbTopics] = db[currentDbTopics]+db[targetDbTopics]
+    for i in range(0,len(db[targetDbTopics])):
+      db[currentDbTopics].append(db[targetDbTopics][i])
   else: 
     db[currentDbTopics] = db[targetDbTopics]
+
+def reset_db(serverid,password):
+  if db["PW_"+serverid] == password:
+    del db["Fragen_"+str(serverid)]
+    del db["Pflicht_"+str(serverid)]
+    del db["Mostlikely_"+str(serverid)]
+    del db["Topics_"+str(serverid)]
+    print("Reset done")
+  else:
+    print("Wrong password")
