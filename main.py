@@ -42,7 +42,7 @@ option_TruthOrDare = [
 
 option_eb = [
   create_option(
-    name="question", description="The Question for the magic eight ball",option_type=3,required=True
+    name="question", description="The Question for the eight ball",option_type=3,required=True
   )
 ]
 
@@ -297,8 +297,8 @@ async def Topic(ctx):
 
 @slash.slash(name="eb", description="Asks the magic Eight ball",options = option_eb)
 async def eb(ctx, question: str):
-  print('{0.author.name} asked the magic eight ball'.format(ctx))
-  await ctx.send("The Question for the magic eight ball was: "+question+"\nHis Answere is: "+random.choice(eightball))
+  print('{0.author.name} asked the eight ball'.format(ctx))
+  await ctx.send("The Question for the eight ball was: "+question+"\nHis Answer is: "+random.choice(eightball))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))

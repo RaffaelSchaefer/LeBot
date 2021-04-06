@@ -10,7 +10,7 @@ It uses the new slash command system
 
 - Truth or Dare
 - Who is most likely (WIP)
-- Magic eight ball
+- Eight ball
 
 ## Bot commands
 
@@ -23,6 +23,6 @@ It uses the new slash command system
 | /TruthOrDare (mode) | Starts a new round of Truth or Dare |
 | /MostLikelyTo | Starts a new round of Most likely to |
 | /Topic | Shows a new topic |
-| /eb | Asks the magic Eight ball |
+| /eb | Asks the Eight ball |
 | /migrate | Migrate a db |
 | /reset | Reset all dbs on a server |
