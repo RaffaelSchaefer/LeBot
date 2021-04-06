@@ -23,6 +23,7 @@ It uses the new slash command system
 | /TruthOrDare (mode) | Starts a new round of Truth or Dare |
 | /MostLikelyTo | Starts a new round of Most likely to |
 | /Topic | Shows a new topic |
-| /eb | Asks the Eight ball |
-| /migrate | Migrate a db |
-| /reset | Reset all dbs on a server |
+| /eb (qeustion) | Asks the Eight ball |
+| /dice (sides) (amount) | Roll a amount of dices |
+| /migrate (serverid) (masterpassword)| Migrate a db |
+| /reset (masterpassword)| Reset all dbs on a server |
