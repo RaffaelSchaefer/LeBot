@@ -312,12 +312,19 @@ async def eb(ctx, question: str):
 @slash.slash(name="dice", description="Roll a amount of dices",options = option_dice)
 async def dice(ctx, sides: int, amount: int):
   print('{0.author.name} rolled the dice'.format(ctx))
-  for i in range(0,amount):
-    number = str(i+1)
-    reslut = str(random.randrange(1,sides))
-    out = str("Dice "+number+": "+reslut)
-    await asyncio.sleep(2)
-    await ctx.send(out)
+  if amount < 5:
+    for i in range(0,amount):
+      number = str(i+1)
+      reslut = str(random.randrange(1,sides))
+      out = str("Dice "+number+": "+reslut)
+      await ctx.send(out)
+  else:
+    for i in range(0,amount):
+      number = str(i+1)
+      reslut = str(random.randrange(1,sides))
+      out = str("Dice "+number+": "+reslut)
+      await asyncio.sleep(2)
+      await ctx.send(out)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
