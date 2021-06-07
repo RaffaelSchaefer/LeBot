@@ -24,6 +24,5 @@ It uses the new slash command system
 | /MostLikelyTo | Starts a new round of Most likely to |
 | /Topic | Shows a new topic |
 | /eb (qeustion) | Asks the Eight ball |
-| /dice (sides) (amount) | Roll a amount of dices |
 | /migrate (serverid) (masterpassword)| Migrate a db |
 | /reset (masterpassword)| Reset all dbs on a server |

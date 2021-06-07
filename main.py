@@ -147,18 +147,6 @@ option_reset = [
   )
 ]
 
-option_dice = [
-  create_option(
-    name="amount", description="Amount of dices",option_type=4,required=True
-  ),
-  create_option(
-    name="sides", description="Sides of the dice",option_type=4,required=True
-  ),
-  create_option(
-    name="modifier", description="Changes the default value",option_type=4,required=True
-  )
-]
-
 ##Commands Database
 
 @slash.slash(name="new", description="Adds a new entry to a specific database",options=option_New)
@@ -312,23 +300,5 @@ async def eb(ctx, question: str):
   print('{0.author.name} asked the eight ball'.format(ctx))
   await ctx.send("The Question for the eight ball was: "+question+"\nHis Answer is: "+random.choice(eightball))
 
-@slash.slash(name="dice", description="Roll a amount of dices",options = option_dice)
-async def dice(ctx, amount: int, sides: int, modifer: int):
-  print('{0.author.name} rolled the dice'.format(ctx))
-  if amount < 5:
-    for i in range(0,amount):
-      number = str(i+1)
-      reslut = str(random.randrange(1,sides))+modifer
-      out = str("Dice "+number+": "+reslut)
-      await ctx.send(out)
-  else:
-    for i in range(0,amount):
-      number = str(i+1)
-      reslut = str(random.randrange(1,sides))+modifer
-      out = str("Dice "+number+": "+reslut)
-      await asyncio.sleep(2)
-      await ctx.send(out)
-
 keep_alive()
-token = os.environ['TOKEN']
-client.run(token)
+client.run(os.getenv('TOKEN'))
